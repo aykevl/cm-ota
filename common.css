@@ -1,0 +1,14 @@
+
+html {
+	font-family: sans-serif;
+	margin: 8px;
+}
+
+body {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+table {
+	overflow: auto;
+}
