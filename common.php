@@ -39,11 +39,26 @@ function loadChanges() {
 			continue;
 		$md5sum = substr(trim(file_get_contents($path_md5)), 0, 32);
 
+		$buildPropLines = explode("\n", file_get_contents('zip://' . $ROM_PATH . $fn . '#system/build.prop'));
+		$buildProp = [];
+		foreach ($buildPropLines as $line) {
+			if (strlen($line) == 0)
+				continue;
+			if ($line[0] === '#')
+				continue;
+			$pos = strpos($line, '=');
+			if ($pos === false)
+				continue;
+			$key = substr($line, 0, $pos);
+			$value = substr($line, $pos+1);
+			$buildProp[$key] = $value;
+		}
+
 		$result[] = [
 			'incremental'   => null,
-			'api_level'     => 23,
+			'api_level'     => (int)$buildProp['ro.build.version.sdk'],
 			'url'           => $ROM_URL . rawurlencode($fn),
-			'timestamp'     => (string)filemtime($path),
+			'timestamp'     => $buildProp['ro.build.date.utc'],
 			'md5sum'        => $md5sum,
 			'changes'       => $changesURL,
 			'channel'       => 'nightly',

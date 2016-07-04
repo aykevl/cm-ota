@@ -21,7 +21,7 @@ $changes = loadChanges();
 	<tr>
 		<th>Filename:</th>
 		<th>TWRP recovery:</th>
-		<th>Build finished:</th>
+		<th>Build date:</th>
 	</tr>
 <?php foreach ($changes as $change) { ?>
 	<tr>
