@@ -20,11 +20,17 @@ $changes = loadChanges();
 <table>
 	<tr>
 		<th>Filename:</th>
+		<th>TWRP recovery:</th>
 		<th>Build finished:</th>
 	</tr>
 <?php foreach ($changes as $change) { ?>
 	<tr>
 		<td><a href="<?= esc($change['url']) ?>"><?= esc($change['filename']) ?></a></td>
+		<td>
+<?php if (isset($change['twrp-url'])) { ?>
+			<a href="<?= esc($change['twrp-url']) ?>"><?= esc($change['twrp-filename']) ?></a>
+<?php } ?>
+		</td>
 		<td><?= date('Y-m-d H:i', (int)$change['timestamp']) ?></td>
 	</tr>
 <?php } ?>

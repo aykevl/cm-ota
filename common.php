@@ -17,6 +17,16 @@ function loadChanges() {
 		if (substr($fn, -4) != '.zip')
 			continue;
 
+		$matches = [];
+		if (preg_match('{^.*-(20[0-9]{6})-(UNOFFICIAL|NIGHTLY)-([a-z]+)\.zip$}', $fn, $matches) === false) {
+			continue;
+		}
+		$twrpFile = "twrp-{$matches[1]}-{$matches[2]}-{$matches[3]}.img";
+		$twrpURL = null;
+		if (file_exists($ROM_PATH . $twrpFile)) {
+			$twrpURL = $ROM_URL . rawurlencode($twrpFile);
+		}
+
 		$changesFile = substr($fn, 0, -4) . '.txt';
 		if (!file_exists($ROM_PATH . $changesFile))
 			continue;
@@ -30,14 +40,16 @@ function loadChanges() {
 		$md5sum = substr(trim(file_get_contents($path_md5)), 0, 32);
 
 		$result[] = [
-			'incremental' => null,
-			'api_level'   => 23,
-			'url'         => $ROM_URL . rawurlencode($fn),
-			'timestamp'   => (string)filemtime($path),
-			'md5sum'      => $md5sum,
-			'changes'     => $changesURL,
-			'channel'     => 'nightly',
-			'filename'    => $fn,
+			'incremental'   => null,
+			'api_level'     => 23,
+			'url'           => $ROM_URL . rawurlencode($fn),
+			'timestamp'     => (string)filemtime($path),
+			'md5sum'        => $md5sum,
+			'changes'       => $changesURL,
+			'channel'       => 'nightly',
+			'filename'      => $fn,
+			'twrp-filename' => $twrpFile,
+			'twrp-url'      => $twrpURL,
 		];
 	}
 	return $result;
