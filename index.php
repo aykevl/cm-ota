@@ -13,7 +13,7 @@ $changes = loadChanges();
 	</head>
 	<body>
 
-<h1>Unofficial CyanogenMod ROMs for the Samsung Galaxy S5 Mini</h1>
+<h1>Unofficial CyanogenMod ROMs for the Samsung Galaxy S5 Mini (G800F)</h1>
 
 <p>See the forum discussion at <a href="http://forum.xda-developers.com/galaxy-s5-mini/development/g800f-m-y-cyanogenmod-13-0-g800f-m-y-t3234909">XDA Developers</a> for the sources of this ROM.
 
