@@ -1,7 +1,7 @@
 <?php
 
 require_once 'common.php';
-$changes = loadChanges();
+$changes = array_reverse(loadChanges());
 
 ?>
 <!DOCTYPE html>
@@ -13,26 +13,39 @@ $changes = loadChanges();
 	</head>
 	<body>
 
-<h1>Unofficial CyanogenMod ROMs for the Samsung Galaxy S5 Mini (G800F)</h1>
+<h1>Unofficial LineageOS ROMs for the Samsung Galaxy S5 Mini (G800F)</h1>
 
-<p>See the forum discussion at <a href="http://forum.xda-developers.com/galaxy-s5-mini/development/g800f-m-y-cyanogenmod-13-0-g800f-m-y-t3234909">XDA Developers</a> for the sources of this ROM.
+<p>See the forum discussion at <a href="https://forum.xda-developers.com/galaxy-s5-mini/development/g800f-m-y-lineageos-14-1-g800f-m-y-t3549055">XDA Developers</a> for the sources of this ROM.
+
+<p>
+	<a href="<?= esc($changes[0]['url']) ?>" class="download">Download <?= esc($changes[0]['rom-name'] . ' ' . $changes[0]['rom-version']) ?></a>
+	<!--<a href="<?= esc($changes[0]['twrp-url']) ?>" class="download">Download recovery</a>-->
+</p>
+
+<h2>Older releases</h2>
+
+<p>These files are sorted from newest to oldest.</p>
 
 <table>
-	<tr>
-		<th>Filename:</th>
-		<th>TWRP recovery:</th>
-		<th>Build date:</th>
-	</tr>
+	<thead>
+		<tr>
+			<th>Build date</th>
+			<th>OS</th>
+			<th>Recovery</th>
+		</tr>
+	</thead>
+	<tbody>
 <?php foreach ($changes as $change) { ?>
-	<tr>
-		<td><a href="<?= esc($change['url']) ?>"><?= esc($change['filename']) ?></a></td>
-		<td>
+		<tr>
+			<td><?= date('Y-m-d H:i', (int)$change['timestamp']) ?></td>
+			<td><a href="<?= esc($change['url']) ?>" title="<?= esc($change['filename']) ?>"><?= esc($change['rom-name'] . ' ' . $change['rom-version']) ?></a></td>
+			<td>
 <?php if (isset($change['twrp-url'])) { ?>
-			<a href="<?= esc($change['twrp-url']) ?>"><?= esc($change['twrp-filename']) ?></a>
+				<a href="<?= esc($change['twrp-url']) ?>" title="<?= esc($change['twrp-filename']) ?>">TWRP</a>
 <?php } ?>
-		</td>
-		<td><?= date('Y-m-d H:i', (int)$change['timestamp']) ?></td>
-	</tr>
+			</td>
+		</tr>
+	</tbody>
 <?php } ?>
 </table>
 

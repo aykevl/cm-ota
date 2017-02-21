@@ -54,17 +54,37 @@ function loadChanges() {
 			$buildProp[$key] = $value;
 		}
 
+		$incremental = $buildProp['ro.build.version.incremental'];
+		$api_level = (int)$buildProp['ro.build.version.sdk'];
+
+		$rom_version = explode('-', $fn)[1];
+		$rom_name = explode('-', $fn)[0];
+		if ($rom_name === 'cm') {
+			$rom_name = 'CyanogenMOD';
+		} elseif ($rom_name == 'lineage') {
+			$rom_name = 'LineageOS';
+		}
+
 		$result[] = [
-			'incremental'   => null,
-			'api_level'     => (int)$buildProp['ro.build.version.sdk'],
+			// Web frontend
+			'twrp-filename' => $twrpFile,
+			'twrp-url'      => $twrpURL,
+			'device'        => $buildProp['ro.cm.device'],
+			'rom-name'      => $rom_name,
+			'rom-version'   => $rom_version,
+			// Both ROMs
+			'filename'      => $fn,
 			'url'           => $ROM_URL . rawurlencode($fn),
+			// LineageOS
+			'datetime'      => $buildProp['ro.build.date.utc'],
+			'romtype'       => 'nightly',
+			// CyanogenMOD (deprecated)
+			'incremental'   => null,
+			'api_level'     => $api_level,
 			'timestamp'     => $buildProp['ro.build.date.utc'],
 			'md5sum'        => $md5sum,
 			'changes'       => $changesURL,
 			'channel'       => 'nightly',
-			'filename'      => $fn,
-			'twrp-filename' => $twrpFile,
-			'twrp-url'      => $twrpURL,
 		];
 	}
 	return $result;
