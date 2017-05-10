@@ -1,38 +1,36 @@
-
-html {
-	font-family: sans-serif;
-	margin: 8px;
+.mdl-layout__content {
+	display: flex;
+	flex-direction: column;
 }
-
-body {
-	max-width: 800px;
-	margin: 0 auto;
+.page-content {
+  margin: 24px 80px;
+  flex: 1;
 }
-
-table {
-	border-collapse: collapse;
-	overflow: auto;
+.heading {
+  margin-bottom: 40px;
 }
-
-table th {
-	text-align: left;
-	background: #eee;
+.mdl-data-table {
+	white-space: normal;
 }
-
-table th,
-table td {
-	border: 1px solid #bbb;
-	padding: 8px 8px;
+.mdl-button {
+  margin-bottom: 10px;
 }
-
-a.download {
-	display: inline-block;
-	margin: 4px 4px 4px 0;
-	background: #8e8;
-	background: linear-gradient(to bottom, #8e8, #7c7);
-	border-radius: 4px;
-	padding: 8px;
-	text-decoration: none;
-	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-	color: black;
+.mdl-mini-footer {
+	padding: 32px 80px;
+	display: block;
+}
+@media (max-width: 768px) {
+  .page-content {
+    margin: 8px 16px;
+  }
+  .mdl-layout__header-row {
+    padding: 0 16px !important;
+	}
+	.mdl-mini-footer {
+		padding: 32px 16px;
+		display: block;
+	}
+	.mdl-logo {
+		margin-bottom: 0;
+	}
 }
