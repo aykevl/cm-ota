@@ -33,8 +33,8 @@ $changes = array_reverse(loadChanges());
           <p>
             See the forum discussion at <a href="https://forum.xda-developers.com/galaxy-s5-mini/development/g800f-m-y-lineageos-14-1-g800f-m-y-t3549055">XDA Developers</a> for the sources of this ROM.
           </p>
-          <a href="<?= esc($changes[0]['url']) ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Download <?= esc($changes[0]['rom-name'] . ' ' . $changes[0]['rom-version']) ?></a>
-          <a href="<?= esc($changes[0]['twrp-url']) ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Download TWRP</a>
+          <a href="<?= esc($changes[0]['url']) ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Download <?= esc($changes[0]['rom-name'] . ' ' . $changes[0]['rom-version']) ?></a>
+          <a href="<?= esc($changes[0]['twrp-url']) ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Download TWRP</a>
         </div>
         <h4>Older releases</h4>
         <p>These files are sorted from newest to oldest.</p>
