@@ -13,7 +13,6 @@ $changes = array_reverse(loadChanges());
   <title>Unofficial S5 Mini ROMS</title>
 
   <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" />
-
   <link rel="stylesheet" href="common.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -71,10 +70,16 @@ $changes = array_reverse(loadChanges());
     </div>
   </footer>
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-  <script>mdc.autoInit();</script>
   <script>
-    var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
-    toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
+  mdc.autoInit();
+  var toolbar = mdc.toolbar.MDCToolbar.attachTo(document.querySelector('.mdc-toolbar'));
+  toolbar.fixedAdjustElement = document.querySelector('.mdc-toolbar-fixed-adjust');
+
+  for (var links = document.links, i = 0, a; a = links[i]; i++) {
+    if (a.host !== location.host) {
+      a.target = '_blank';
+    }
+  }
   </script>
 
 </body>
